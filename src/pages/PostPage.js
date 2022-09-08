@@ -1,16 +1,9 @@
-import PostCard from "../components/post/PostCard";
-import PostHeader from "../components/post/PostHeader";
-import PostTemplate from "../components/post/PostTemplate";
+import PostForm from "../containsers/PostForm";
+
 
 const PostPage = () => {
     return(
-        <PostTemplate>
-            <PostHeader />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-        </PostTemplate>
+        <PostForm />
     )
 }
 
