@@ -1,9 +1,8 @@
-import AuthForm from "../components/auth/AuthForm";
-
+import LoginForm from "../containsers/LoginForm";
 
 const AuthPage = () => {
     return(
-        <AuthForm />
+        <LoginForm />
     )
 }
 
