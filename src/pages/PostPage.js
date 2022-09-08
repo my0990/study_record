@@ -1,8 +1,14 @@
+import PostCard from "../components/post/PostCard";
+import PostTemplate from "../components/post/PostTemplate";
+
 const PostPage = () => {
     return(
-        <div>
-            post페이지입니다
-        </div>
+        <PostTemplate>
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+        </PostTemplate>
     )
 }
 
