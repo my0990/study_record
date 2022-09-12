@@ -16,9 +16,6 @@ const PostForm = () => {
         <PostTemplate>
             <PostHeader onLogout={onLogout}/>
             <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
         </PostTemplate>
     )
 }
