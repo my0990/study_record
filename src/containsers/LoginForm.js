@@ -52,6 +52,7 @@ const LoginForm = () => {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
+            localStorage.setItem('username',form.username);
             // navigate("/post");
         })
         .catch((error) => {
