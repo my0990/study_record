@@ -10,9 +10,6 @@ const PostList = ({url, text, username}) => {
                 <p className="text-sm">
                     {text}
                 </p>
-                
-
-                
             </div>
         </div>
         </>

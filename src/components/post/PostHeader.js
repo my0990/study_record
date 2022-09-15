@@ -1,6 +1,3 @@
-
-
-
 const PostHeader = ({onLogout}) => {
 
     return(
@@ -14,7 +11,7 @@ const PostHeader = ({onLogout}) => {
                     <label tabIndex={0} className="btn btn-ghost rounded-btn">메뉴</label>
                     <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4 bg-slate-300">
                         <li onClick={onLogout}><a>로그아웃</a></li> 
-                        {/* <li><a>공부 열심히 하세요</a></li> */}
+                        <li><a>SuperPass</a></li> 
                     </ul>
                 </div>
                 </div>

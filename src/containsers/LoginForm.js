@@ -36,50 +36,26 @@ const LoginForm = () => {
     const onLogin = (e) => {
         e.preventDefault();
         setIsClicked(true);
-        // let username = '';
-        // if(form.username === '강지현'){
-        //     username = 'jh@naver.com';
-        // } else if(form.username === '김의진'){
-        //     username = 'uj@naver.com';
-        // } else if(form.username === '고지웅'){
-        //     username = 'jw@naver.com';
-        // } else if(form.username === '조미란'){
-        //     username = 'mr@naver.com';
-        // }
-        console.log(e.target.value);
         // 로그인
         app.auth().signInWithEmailAndPassword(nameConverter(form.username), form.password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
             localStorage.setItem('username',form.username);
             // navigate("/post");
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
             setIsClicked(false);
             setError('아이디와 비번을 확인해주세요')
-            console.log(error);
         })
         app.auth().signOut();
     }
 
     useEffect(()=>{
-        console.log('form: ', form)
         app.auth().onAuthStateChanged((user) => {
             if (user) {
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/firebase.User
-              var uid = user.uid;
-              console.log(uid)
               navigate("/post");
-              // ...
             } else {
-                console.log('logout')
                 setIsLoading(false);
-              // User is signed out
-              // ...
             }
           });
     },[])
@@ -94,7 +70,6 @@ const LoginForm = () => {
             error={error}
             />
     )
-    
 }
 
 export default LoginForm;

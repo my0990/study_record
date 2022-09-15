@@ -5,20 +5,18 @@ import { app, db } from '../lib/api/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/post/PostList';
 import { useEffect, useState } from 'react';
+import PostStudyRecord from '../components/post/PostStudyRecord';
 
 
 
 const PostForm = () => {
-
     let navigate = useNavigate();
     const [posts,setPosts] = useState([]);
     const onLogout = () => {
-
         app.auth().signOut().then(()=>{
             navigate("/");
         }).catch((error)=>{
             console.log(error)
-
         })
     }
     useEffect(()=>{
@@ -26,7 +24,6 @@ const PostForm = () => {
         const getPostDatas = async () =>{
             await db.collection(`${date}`).orderBy('time').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.data());
                     setPosts(posts => [...posts, doc.data()]);
                 })
             })
@@ -36,8 +33,9 @@ const PostForm = () => {
     return(
         <PostTemplate>
             <PostHeader onLogout={onLogout}/>
+            <PostStudyRecord />
             {posts.map((post,id)=>
-                <PostList url={post.url} text={post.text} username={post.name}/>
+                <PostList url={post.url} text={post.text} username={post.name} key={post.url}/>
             )}
             <PostCard/>
         </PostTemplate>
