@@ -9,13 +9,16 @@ import { useEffect, useState } from 'react';
 
 
 const PostForm = () => {
+
     let navigate = useNavigate();
     const [posts,setPosts] = useState([]);
     const onLogout = () => {
+
         app.auth().signOut().then(()=>{
             navigate("/");
         }).catch((error)=>{
             console.log(error)
+
         })
     }
     useEffect(()=>{
@@ -36,7 +39,7 @@ const PostForm = () => {
             {posts.map((post,id)=>
                 <PostList url={post.url} text={post.text} username={post.name}/>
             )}
-            <PostCard />
+            <PostCard/>
         </PostTemplate>
     )
 }

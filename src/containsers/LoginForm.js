@@ -12,6 +12,8 @@ import nameConverter from "../lib/api/nameConverter";
 
 const LoginForm = () => {
     const [isLoading,setIsLoading] = useState(true);
+    const [isClicked,setIsClicked] = useState(false);
+    const [error,setError] = useState(' ');
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const {form} = useSelector(({auth}) => ({
@@ -33,6 +35,7 @@ const LoginForm = () => {
 
     const onLogin = (e) => {
         e.preventDefault();
+        setIsClicked(true);
         // let username = '';
         // if(form.username === '강지현'){
         //     username = 'jh@naver.com';
@@ -51,11 +54,12 @@ const LoginForm = () => {
             console.log(user);
             localStorage.setItem('username',form.username);
             // navigate("/post");
-              
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            setIsClicked(false);
+            setError('아이디와 비번을 확인해주세요')
             console.log(error);
         })
         app.auth().signOut();
@@ -86,6 +90,8 @@ const LoginForm = () => {
             onLogin={onLogin}
             onChange={onChange}
             form ={form}
+            isClicked={isClicked}
+            error={error}
             />
     )
     
