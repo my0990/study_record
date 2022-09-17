@@ -5,12 +5,12 @@ const PostStudyRecord = () => {
         date.push(index);
     }
     return(
-        <div className="w-1/2 m-auto">
-            <h1 className="text-3xl">
+        <div className="m-auto w-full">
+            <h1 className="text-3xl text-center mt-3 mb-3">
                 {today.getFullYear()}년{today.getMonth()+1}월{today.getDate()}일
             </h1>
-            <div className="">
-                <table className="table overflow-y-auto">
+            <div className=" overflow-y-auto">
+                <table className="table">
                 
                     <thead>
                     <tr>

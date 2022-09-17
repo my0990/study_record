@@ -54,7 +54,7 @@ const PostCard = () => {
     return(<>
                 {!imageUpload 
                 //입력하기창
-                ?<div className="flex justify-center items-center p-6 m-6 bg-white border-t  rounded shadow-lg  lg:w-1/3 md:w-1/2 w-2/3 h-56 ">
+                ?<div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-24 ">
                     <form>
                         <label style={{cursor:"pointer"}} for="input-file" className="px-3 py-1 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
                         +
@@ -65,7 +65,7 @@ const PostCard = () => {
                 //올리기 창
                 :<div className="card bg-base-100 shadow-xl  w-3/4 mt-4 max-w-sm mb-4">
                     <figure>
-                        <img src={imageSrc} alt="Album" />
+                        <img src={imageSrc} alt="Album" className="object-cover w-32 h-48"/>
                     </figure>
                     <div className="card-title p-4 flex justify-end">
                         <textarea style={{resize:'none'}} className="textarea border-none w-full" placeholder="어떤 공부를 했나요?" ref={textRef} />

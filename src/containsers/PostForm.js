@@ -38,6 +38,9 @@ const PostForm = () => {
                 <PostList url={post.url} text={post.text} username={post.name} key={post.url}/>
             )}
             <PostCard/>
+            <PostCard/>
+            <PostCard/>
+            <PostCard/>
         </PostTemplate>
     )
 }
