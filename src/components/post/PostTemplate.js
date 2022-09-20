@@ -1,6 +1,6 @@
 const PostTemplate = ({children}) => {
     return(
-        <diV className="flex justify-around max-w-screen-xl m-auto items-center flex-wrap phone:w-80 sm:w-96">
+        <diV className="flex justify-around  m-auto items-center flex-wrap phone:w-80 sm:w-128 w-160">
             {children}
         </diV>
     )

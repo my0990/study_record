@@ -54,9 +54,9 @@ const PostCard = () => {
     return(<>
                 {!imageUpload 
                 //입력하기창
-                ?<div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-24 ">
+                ?<div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-24 sm:w-48">
                     <form>
-                        <label style={{cursor:"pointer"}} for="input-file" className="px-3 py-1 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+                        <label style={{cursor:"pointer"}} for="input-file" className="px-2 py-1 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
                         +
                         </label>
                         <input type="file" id="input-file" style={{display: "none"}} onChange={(e) => {onChange(e.target.files[0])}}/>
