@@ -30,6 +30,13 @@ const PostForm = () => {
         }
         getPostDatas();
     },[])
+    const onAttendance = async () => {
+        await db.collection('attendance').doc('202209').set({
+            name:"강지현",
+            date:20220921,
+            superpass: false
+        })
+    };
     return(
         <PostTemplate>
             <PostHeader onLogout={onLogout}/>
@@ -41,6 +48,7 @@ const PostForm = () => {
             <PostCard/>
             <PostCard/>
             <PostCard/>
+            <button onClick={onAttendance}>test</button>
         </PostTemplate>
     )
 }
