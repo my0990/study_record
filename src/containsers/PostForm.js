@@ -22,6 +22,7 @@ const PostForm = () => {
     }
     useEffect(()=>{
         const date = new Date().getDate();
+        const time = new Date();
         const getPostDatas = async () =>{
             await db.collection(`${date}`).orderBy('time').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -31,14 +32,31 @@ const PostForm = () => {
         };
         //출석 데이타 가져오기
 
-        let attendance = []
-        for (let index = 1; index < 32; index++) {
-            attendance.push('X');
+        let attendance = {
+            '강지현': [],
+            '고지웅': [],
+            '김의진': []
+        }
+        for (let index = 0; index < date; index++) {
+            attendance['강지현'].push('X');
+            attendance['고지웅'].push('X');
+            attendance['김의진'].push('X');
+
         }
         const getAttendance = async () => {
-            await db.collection("202209").where("name", "==", "강지현").get().then((querySnapshot) => {
+            await db.collection(`${time.getFullYear()}${time.getMonth()+1}`).where("name", "==", "강지현").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    attendance[doc.data().date-1] = 'O';
+                    attendance['강지현'][doc.data().date-1] = 'O';
+                })
+            });
+            await db.collection(`${time.getFullYear()}${time.getMonth()+1}`).where("name", "==", "고지웅").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    attendance['고지웅'][doc.data().date-1] = 'O';
+                })
+            });
+            await db.collection(`${time.getFullYear()}${time.getMonth()+1}`).where("name", "==", "김의진").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    attendance['김의진'][doc.data().date-1] = 'O';
                 })
             });
             console.log(attendance);

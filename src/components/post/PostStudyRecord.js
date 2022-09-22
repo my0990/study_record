@@ -1,4 +1,5 @@
 const PostStudyRecord = ({query}) => {
+    // console.log(query['강지현']);
     const today = new Date();
     const date = []
     for (let index = 1; index < 32; index++) {
@@ -22,17 +23,24 @@ const PostStudyRecord = ({query}) => {
                     <tbody>
                     <tr>
                         <th>강지현</th>
-                        {query?.map((a,i)=>
+                        {query && query['강지현'].map((a,i)=>
                         <td>
                             {a}
                         </td>)}
                     </tr>
                     <tr>
                         <th>고지웅</th>
-                        <td>X</td>
+                        {query && query['고지웅'].map((a,i)=>
+                        <td>
+                            {a}
+                        </td>)}
                     </tr>
                     <tr>
                         <th>김의진</th>
+                        {query && query['김의진'].map((a,i)=>
+                        <td>
+                            {a}
+                        </td>)}
                     </tr>
                     </tbody>
                 </table>

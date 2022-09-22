@@ -15,6 +15,8 @@ const PostCard = () => {
     const storageRef = storage.ref();
     //현재 시간
     const time = new Date();
+    
+    const name = localStorage.getItem('username');
     //업로드
     const upload = (e) => {
         if (imageUpload === null ) return;
@@ -29,7 +31,13 @@ const PostCard = () => {
                     name: localStorage.getItem('username'),
                     text: textRef.current.value,
                     time: time
-                }).then((docRef)=>{
+                }).then(()=>
+                    db.collection(`${time.getFullYear()}${time.getMonth()+1}`).add({
+                        date: time.getDate(),
+                        name: name,
+                        superpass: false
+                    })
+                 ).then((docRef)=>{
                     window.location.reload();
                 })
                 .catch((error) => {
