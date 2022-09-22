@@ -12,6 +12,7 @@ import PostStudyRecord from '../components/post/PostStudyRecord';
 const PostForm = () => {
     let navigate = useNavigate();
     const [posts,setPosts] = useState([]);
+    const [query,setQuery] = useState(null);
     const onLogout = () => {
         app.auth().signOut().then(()=>{
             navigate("/");
@@ -27,22 +28,43 @@ const PostForm = () => {
                     setPosts(posts => [...posts, doc.data()]);
                 })
             })
+        };
+        //출석 데이타 가져오기
+
+        let attendance = []
+        for (let index = 1; index < 32; index++) {
+            attendance.push('X');
+        }
+        const getAttendance = async () => {
+            await db.collection("202209").where("name", "==", "강지현").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    attendance[doc.data().date-1] = 'O';
+                })
+            });
+            console.log(attendance);
+            setQuery(attendance);
         }
         getPostDatas();
+        getAttendance();
     },[])
     const onAttendance = async () => {
-        await db.collection('attendance').doc('202209').set({
+        await db.collection('202209').add({
             name:"강지현",
-            date:20220921,
+            date: 17,
             superpass: false
         })
     };
     return(
         <PostTemplate>
             <PostHeader onLogout={onLogout}/>
-            <PostStudyRecord />
+            <PostStudyRecord query={query}/>
             {posts.map((post,id)=>
-                <PostList url={post.url} text={post.text} username={post.name} key={post.url}/>
+                <PostList 
+                    url={post.url} 
+                    text={post.text} 
+                    username={post.name} 
+                    key={post.url}
+                />
             )}
             <PostCard/>
             <PostCard/>
