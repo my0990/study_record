@@ -1,6 +1,3 @@
-
-
-
 const nameConverter = (name) => {
     if(name === '강지현'){
         return 'jh@naver.com';

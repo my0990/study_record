@@ -1,6 +1,7 @@
 import PostTemplate from '../components/post/PostTemplate';
 import PostHeader from '../components/post/PostHeader';
 import PostCard from '../components/post/PostCard';
+import PostModal from '../components/post/PostModal';
 import { app, db } from '../lib/api/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/post/PostList';
@@ -9,10 +10,13 @@ import PostStudyRecord from '../components/post/PostStudyRecord';
 
 
 
+
 const PostForm = () => {
     let navigate = useNavigate();
     const [posts,setPosts] = useState([]);
     const [query,setQuery] = useState(null);
+
+
     const onLogout = () => {
         app.auth().signOut().then(()=>{
             navigate("/");
@@ -24,7 +28,7 @@ const PostForm = () => {
         const date = new Date().getDate();
         const time = new Date();
         const getPostDatas = async () =>{
-            await db.collection(`${date}`).orderBy('time').get().then((querySnapshot) => {
+            await db.collection(`${time.getFullYear()}${time.getMonth()+1}${time.getDate()}`).orderBy('time').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     setPosts(posts => [...posts, doc.data()]);
                 })
@@ -65,30 +69,28 @@ const PostForm = () => {
         getPostDatas();
         getAttendance();
     },[])
-    const onAttendance = async () => {
-        await db.collection('202209').add({
-            name:"강지현",
-            date: 17,
-            superpass: false
-        })
-    };
+
     return(
         <PostTemplate>
             <PostHeader onLogout={onLogout}/>
             <PostStudyRecord query={query}/>
-            {posts.map((post,id)=>
+            {/* {posts.map((post,id)=>
                 <PostList 
                     url={post.url} 
                     text={post.text} 
                     username={post.name} 
                     key={post.url}
                 />
-            )}
+            )} */}
+            {/* <PostCard/>
             <PostCard/>
             <PostCard/>
-            <PostCard/>
-            <PostCard/>
-            <button onClick={onAttendance}>test</button>
+            <PostCard/> */}
+
+            <PostModal />
+            <PostModal />
+            <PostModal />
+            <PostModal />
         </PostTemplate>
     )
 }
