@@ -1,8 +1,10 @@
 import { storage } from "../../lib/api/firebaseConfig";
 import { useState,useRef } from "react";
 import { db } from "../../lib/api/firebaseConfig";
+import ModalBtn from "./ModalBtn";
+import ModalBlock from "./ModalBlock";
 
-const PostModal = () => {
+const PostModal = ({username}) => {
     //input 이미지 state
     const [imageUpload, setImageUpload] = useState(null);
     //이미지 업로드 로딩
@@ -61,20 +63,30 @@ const PostModal = () => {
     return(
         <>
 
-            {/* <label htmlFor="my-modal-4" className="btn modal-button">open modal</label> */}
-            <div className="text-center mt-4">
-                <h1 className="text-slate-900 italic font-bold">강지현</h1>
-                <label htmlFor="my-modal-4" className="p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-48 btn modal-button">
-                    
-                </label>
+            {/* 모달 버튼 */}
+            {/* <div className="text-center mt-4">
+                <h1 className="text-slate-900 italic font-bold">{username}</h1>
+                <label htmlFor="my-modal-4" className="p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-48 btn modal-button" />
             </div> 
-            <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+            <input type="checkbox" id="my-modal-4" className="modal-toggle" /> */}
+            {username === '강지현' 
+                ? <ModalBtn username={username}/>
+                : <ModalBlock username={username}/>
+            }
             <label htmlFor="my-modal-4" className="modal cursor-pointer">
-            {/* <label className="modal-box relative w-1/2" for=""> */}
+
                 <div className="modal-box  card bg-base-100 shadow-xl  w-128 h-64">
-                    <figure>
+                    {/* <figure>
                         <img src={imageSrc} alt="Album" className="object-cover w-1/2"/>
-                    </figure>
+                    </figure> */}
+                    <div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg">
+                        <form>
+                            <label style={{cursor:"pointer"}} for="input-file" className="px-2 py-1 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+                            +
+                            </label>
+                            <input type="file" id="input-file" style={{display: "none"}} onChange={(e) => {onChange(e.target.files[0])}}/>
+                        </form>
+                    </div> 
                     <div className="card-title p-4 flex justify-end">
                         <textarea style={{resize:'none'}} className="textarea border-none w-full" placeholder="어떤 공부를 했나요?" ref={textRef} />
                         <button className="btn btn-primary flex justify-center" onClick={upload}>

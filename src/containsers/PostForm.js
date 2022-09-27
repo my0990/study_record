@@ -87,10 +87,10 @@ const PostForm = () => {
             <PostCard/>
             <PostCard/> */}
 
-            <PostModal />
-            <PostModal />
-            <PostModal />
-            <PostModal />
+            <PostModal username='강지현'/>
+            <PostModal username='고지웅'/>
+            <PostModal username='조미란'/>
+            <PostModal username='김의진'/>
         </PostTemplate>
     )
 }
