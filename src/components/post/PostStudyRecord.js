@@ -6,15 +6,15 @@ const PostStudyRecord = ({query}) => {
         date.push(index);
     }
     return(
-        <div className="m-auto w-full">
+        <div className="m-auto w-full ">
             <h1 className="text-3xl text-center mt-3 mb-3">
                 {today.getFullYear()}년{today.getMonth()+1}월{today.getDate()}일
             </h1>
-            <div className=" overflow-y-auto">
+            <div className="overflow-y-auto">
                 <table className="table">
-                    <thead>
-                    <tr>
-                        <th></th>
+                    <thead >
+                    <tr >
+                        <th ></th>
                         {date.map((a,i)=>
                             <th>{a}</th>
                         )}
@@ -46,6 +46,7 @@ const PostStudyRecord = ({query}) => {
                 </table>
             </div>
         </div>
+
     )
 }
 

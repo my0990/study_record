@@ -1,10 +1,12 @@
 import { storage } from "../../lib/api/firebaseConfig";
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 import { db } from "../../lib/api/firebaseConfig";
 import ModalBtn from "./ModalBtn";
 import ModalBlock from "./ModalBlock";
+import UploadIcon from "../common/UploadIcon";
+import ModalCard from "./ModalCard";
 
-const PostModal = ({username}) => {
+const PostModal = ({username, post}) => {
     //input 이미지 state
     const [imageUpload, setImageUpload] = useState(null);
     //이미지 업로드 로딩
@@ -17,7 +19,8 @@ const PostModal = ({username}) => {
     const storageRef = storage.ref();
     //현재 시간
     const time = new Date();
-    
+    //체크박스 관리
+    const [checked,setChecked] = useState(false);
     const name = localStorage.getItem('username');
     //업로드
     const upload = (e) => {
@@ -60,6 +63,13 @@ const PostModal = ({username}) => {
             }
         })
     }
+    useEffect(()=>{
+        setImageUpload(null);
+        textRef.current.value='';
+    },[checked])
+    useEffect(()=>{
+        console.log(post[0]?.name)
+    },[post])
     return(
         <>
 
@@ -69,17 +79,55 @@ const PostModal = ({username}) => {
                 <label htmlFor="my-modal-4" className="p-3 m-3 bg-white border-t  rounded shadow-lg   w-32 h-48 btn modal-button" />
             </div> 
             <input type="checkbox" id="my-modal-4" className="modal-toggle" /> */}
-            {username === '강지현' 
-                ? <ModalBtn username={username}/>
+            {post[0]?.name
+                ? <ModalCard post={post[0]}/>
+                :username === localStorage.getItem("username")
+                ? <ModalBtn username={username} checked={checked} setChecked={setChecked}/>
                 : <ModalBlock username={username}/>
             }
             <label htmlFor="my-modal-4" className="modal cursor-pointer">
+                <div className="modal-box">
+                    {/* 이미지 */}
+                    
+                    <div className="w-full">
+                        {!imageUpload
+                        ?<label className="flex flex-col w-full h-32 border-4 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                        <div className="flex flex-col items-center justify-center pt-7">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                className="w-12 h-12 text-gray-400 group-hover:text-gray-600" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                Select a photo
+                            </p>
+                        </div>
+                        <input type="file" className="opacity-0" onChange={(e) => {onChange(e.target.files[0])}}/>
+                        </label>
+                        :<figure>
+                            <img src={imageSrc} alt="Album" className="object-cover"/>
+                        </figure>
+                        }
 
-                <div className="modal-box  card bg-base-100 shadow-xl  w-128 h-64">
+                    </div>
+
+                    {/* 텍스트 및 올리기 버튼 */}
+                    <div className="mt-4">
+                        <textarea style={{resize:'none'}} className="textarea  w-full" placeholder="어떤 공부를 했나요?" ref={textRef} />
+                        <button className="btn btn-primary  mt-4 w-full" onClick={upload}>
+                            {isLoading
+                            ? <UploadIcon />
+                            : "올리기"}
+                        </button>
+                    </div>
+                </div>
+                {/* <div className="modal-box  card bg-base-100 shadow-xl  w-128 h-64"> */}
                     {/* <figure>
                         <img src={imageSrc} alt="Album" className="object-cover w-1/2"/>
                     </figure> */}
-                    <div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg">
+                    {/* <div className="flex justify-center items-center p-3 m-3 bg-white border-t  rounded shadow-lg">
                         <form>
                             <label style={{cursor:"pointer"}} for="input-file" className="px-2 py-1 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
                             +
@@ -98,8 +146,7 @@ const PostModal = ({username}) => {
                             : "올리기"}
                         </button>
                     </div>
-                </div>
-            {/* </label> */}
+                </div> */}
             </label>
         
         </>

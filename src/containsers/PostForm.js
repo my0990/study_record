@@ -68,6 +68,7 @@ const PostForm = () => {
         }
         getPostDatas();
         getAttendance();
+        console.log(posts)
     },[])
 
     return(
@@ -87,10 +88,10 @@ const PostForm = () => {
             <PostCard/>
             <PostCard/> */}
 
-            <PostModal username='강지현'/>
-            <PostModal username='고지웅'/>
-            <PostModal username='조미란'/>
-            <PostModal username='김의진'/>
+            <PostModal username='강지현' post={posts.filter(post => post.name==='강지현')}/>
+            <PostModal username='고지웅' post={posts.filter(post => post.name==='고지웅')}/>
+            <PostModal username='조미란' post={posts.filter(post => post.name==='조미란')}/>
+            <PostModal username='김의진' post={posts.filter(post => post.name==='김의진')}/>
         </PostTemplate>
     )
 }
