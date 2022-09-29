@@ -15,7 +15,7 @@ const PostForm = () => {
     let navigate = useNavigate();
     const [posts,setPosts] = useState([]);
     const [query,setQuery] = useState(null);
-
+    const month = [31,28,31,30,31,30,31,31,30,31,30,31];
 
     const onLogout = () => {
         app.auth().signOut().then(()=>{
@@ -45,9 +45,13 @@ const PostForm = () => {
             attendance['강지현'].push('X');
             attendance['고지웅'].push('X');
             attendance['김의진'].push('X');
-
         }
-        attendance['강지현'].push('');
+        for (let index = 0; index < month[time.getMonth()] - date; index++){
+            attendance['강지현'].push('');
+            attendance['고지웅'].push('');
+            attendance['김의진'].push('');
+        }
+
         const getAttendance = async () => {
             await db.collection(`${time.getFullYear()}${time.getMonth()+1}`).where("name", "==", "강지현").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {

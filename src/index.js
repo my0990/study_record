@@ -9,6 +9,8 @@ import { createStore } from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from './modules';
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = createStore(rootReducer, composeWithDevTools());

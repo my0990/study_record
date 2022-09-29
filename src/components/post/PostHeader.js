@@ -10,9 +10,9 @@ const PostHeader = ({onLogout}) => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost rounded-btn">메뉴</label>
                     <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4 bg-slate-300">
-                        <li className="h-12 flex  justify-center p-4">강지현</li> 
-                        <li className="h-12 flex  justify-center p-4">벌금: 2500원</li> 
-                        <li onClick={onLogout}><a>로그아웃</a></li> 
+                        <li onClick={onLogout}>
+                            <a>로그아웃</a>
+                        </li> 
                     </ul>
                 </div>
                 </div>
