@@ -18,6 +18,7 @@ const PostStudyRecord = ({query}) => {
                         {date.map((a,i)=>
                             <th>{a}</th>
                         )}
+                        <th>벌금</th>
                     </tr>
                     </thead>
                     <tbody>

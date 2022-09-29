@@ -47,6 +47,7 @@ const PostForm = () => {
             attendance['김의진'].push('X');
 
         }
+        attendance['강지현'].push('');
         const getAttendance = async () => {
             await db.collection(`${time.getFullYear()}${time.getMonth()+1}`).where("name", "==", "강지현").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
