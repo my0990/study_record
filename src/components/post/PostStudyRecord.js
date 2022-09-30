@@ -43,6 +43,14 @@ const PostStudyRecord = ({query}) => {
                         </td>
                     </tr>
                     <tr>
+                        <th>조미란</th>
+                        {query && query['조미란'].map((a,i)=>
+                            i+1 === todayDate ? <td className="bg-gray-300"> {a} </td> : <td> {a} </td>)}
+                        <td>
+                            {query && query['조미란'].reduce((cnt,element)=> cnt + ('X'===element), 0) * 2500}원
+                        </td>
+                    </tr>
+                    <tr>
                         <th>김의진</th>
                         {query && query['김의진'].map((a,i)=>
                             i+1 === todayDate ? <td className="bg-gray-300"> {a} </td> : <td> {a} </td>)}
