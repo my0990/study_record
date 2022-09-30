@@ -14,7 +14,7 @@ const PostStudyRecord = ({query}) => {
                 <table className="table">
                     <thead >
                     <tr >
-                        <th ></th>
+                        <th></th>
                         {date.map((a,i)=>
                             <th>{a}</th>
                         )}
