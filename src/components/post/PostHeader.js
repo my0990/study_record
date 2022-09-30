@@ -1,7 +1,7 @@
 const PostHeader = ({onLogout}) => {
 
     return(
-        <div className="navbar bg-gray-200 rounded-box ">
+        <div className="navbar bg-gray-300 rounded-box ">
             <div className="flex-1 px-2 lg:flex-none">
                 <a className="text-lg font-bold">하루인증</a>
             </div> 
@@ -10,7 +10,9 @@ const PostHeader = ({onLogout}) => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost rounded-btn">메뉴</label>
                     <ul tabIndex={0} className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4 bg-slate-300">
-                        <li onClick={onLogout}><a>로그아웃</a></li> 
+                        <li onClick={onLogout}>
+                            <a>로그아웃</a>
+                        </li> 
                     </ul>
                 </div>
                 </div>
