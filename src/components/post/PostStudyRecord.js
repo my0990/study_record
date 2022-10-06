@@ -1,19 +1,25 @@
+import { currentDate } from "../../lib/api/date";
+
 const PostStudyRecord = ({query}) => {
     // console.log(query['강지현']);
+<<<<<<< HEAD
     const current = new Date();
     const today = new Date(current.getTime() - 1000 * 60 * 60 * 6);
     const todayDate = today.getDate();
+=======
+    const todayDate = currentDate.getDate();
+>>>>>>> 23884d5dc8955b681ed4f145cd9f030e5a75357c
     const date = [];
     const month = [31,28,31,30,31,30,31,31,30,31,30,31];
-    const thisMonth = today.getMonth();
+    const thisMonth = currentDate.getMonth();
     
     for (let index = 1; index <month[thisMonth]+1; index++) {
         date.push(index);
     }
     return(
         <div className="m-auto w-full ">
-            <h1 className="text-3xl text-center mt-3 mb-3">
-                {today.getFullYear()}년{today.getMonth()+1}월{today.getDate()}일
+            <h1 className="text-3xl text-center mt-3 mb-3 font-mono">
+                {currentDate.getFullYear()}년{currentDate.getMonth()+1}월{currentDate.getDate()}일
             </h1>
             <div className="overflow-y-auto">
                 <table className="table">
@@ -43,14 +49,14 @@ const PostStudyRecord = ({query}) => {
                             {query && query['고지웅'].reduce((cnt,element)=> cnt + ('X'===element), 0) *2500}원
                         </td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                         <th>조미란</th>
                         {query && query['조미란'].map((a,i)=>
                             i+1 === todayDate ? <td className="bg-gray-300"> {a} </td> : <td> {a} </td>)}
                         <td>
                             {query && query['조미란'].reduce((cnt,element)=> cnt + ('X'===element), 0) * 2500}원
                         </td>
-                    </tr>
+                    </tr> */}
                     <tr>
                         <th>김의진</th>
                         {query && query['김의진'].map((a,i)=>

@@ -107,7 +107,7 @@ const PostModal = ({username, post}) => {
                         <input type="file" className="opacity-0" onChange={(e) => {onChange(e.target.files[0])}}/>
                         </label>
                         :<figure>
-                            <img src={imageSrc} alt="Album" className="object-cover"/>
+                            <img src={imageSrc} alt="Album" className="object-contain"/>
                         </figure>
                         }
 

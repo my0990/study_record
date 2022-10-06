@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "study-record-8766a"
-  }
+    "default": "study-record-8766a",
+    "staging": "study-record-8766a",
+    "\\": "study-record-8766a"
+  },
+  "targets": {},
+  "etags": {}
 }
