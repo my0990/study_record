@@ -1,6 +1,7 @@
 const PostStudyRecord = ({query}) => {
     // console.log(query['강지현']);
-    const today = new Date();
+    const current = new Date();
+    const today = new Date(current.getTime() - 1000 * 60 * 60 * 6);
     const todayDate = today.getDate();
     const date = [];
     const month = [31,28,31,30,31,30,31,31,30,31,30,31];
