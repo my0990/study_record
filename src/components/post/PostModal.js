@@ -5,6 +5,7 @@ import ModalBtn from "./ModalBtn";
 import ModalBlock from "./ModalBlock";
 import UploadIcon from "../common/UploadIcon";
 import ModalCard from "./ModalCard";
+import {currentDate} from "../../lib/api/date";
 
 const PostModal = ({username, post}) => {
     //input 이미지 state
@@ -31,14 +32,14 @@ const PostModal = ({username, post}) => {
         imageRef.put(imageUpload).then((snapshot)=>{
             snapshot.ref.getDownloadURL().then( url =>
                 //date를 이름으로 하는 컬렉션 새로 생성 => 년월일로 변경하기
-                db.collection(`${time.getFullYear()}${time.getMonth()+1}${time.getDate()}`).add({
+                db.collection(`${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`).add({
                     url: url,
                     name: localStorage.getItem('username'),
                     text: textRef.current.value,
                     time: time
                 }).then(()=>
-                    db.collection(`${time.getFullYear()}${time.getMonth()+1}`).add({
-                        date: time.getDate(),
+                    db.collection(`${currentDate.getFullYear()}${currentDate.getMonth()+1}`).add({
+                        date: currentDate.getDate(),
                         name: name,
                         superpass: false
                     })

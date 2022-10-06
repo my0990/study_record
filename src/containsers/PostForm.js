@@ -27,17 +27,10 @@ const PostForm = () => {
         })
     }
     useEffect(()=>{
-<<<<<<< HEAD
-        const current = new Date();
-        const date = new Date().getDate();
-        const time = new Date(current.getTime() - 1000 * 60 * 60 * 6);
-        console.log(time);
-=======
     
         // const time = new Date();
->>>>>>> 23884d5dc8955b681ed4f145cd9f030e5a75357c
         const getPostDatas = async () =>{
-            await db.collection(`${time.getFullYear()}${time.getMonth()+1}${time.getDate()}`).orderBy('time').get().then((querySnapshot) => {
+            await db.collection(`${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`).orderBy('time').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     setPosts(posts => [...posts, doc.data()]);
                 })

@@ -2,13 +2,7 @@ import { currentDate } from "../../lib/api/date";
 
 const PostStudyRecord = ({query}) => {
     // console.log(query['강지현']);
-<<<<<<< HEAD
-    const current = new Date();
-    const today = new Date(current.getTime() - 1000 * 60 * 60 * 6);
-    const todayDate = today.getDate();
-=======
     const todayDate = currentDate.getDate();
->>>>>>> 23884d5dc8955b681ed4f145cd9f030e5a75357c
     const date = [];
     const month = [31,28,31,30,31,30,31,31,30,31,30,31];
     const thisMonth = currentDate.getMonth();
