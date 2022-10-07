@@ -19,6 +19,12 @@ const PostForm = () => {
     const [query,setQuery] = useState(null);
     const month = [31,28,31,30,31,30,31,31,30,31,30,31];
 
+    //시간 
+    const time = new Date();
+    const currentDate = new Date(time - 1000 * 60 * 60 * 6);
+    const [dateState,setDateState] = useState(currentDate.getDate());
+
+
     const onLogout = () => {
         app.auth().signOut().then(()=>{
             navigate("/");
@@ -29,8 +35,9 @@ const PostForm = () => {
     useEffect(()=>{
     
         // const time = new Date();
+        setPosts([]);
         const getPostDatas = async () =>{
-            await db.collection(`${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`).orderBy('time').get().then((querySnapshot) => {
+            await db.collection(`${currentDate.getFullYear()}${currentDate.getMonth()+1}${dateState}`).orderBy('time').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     setPosts(posts => [...posts, doc.data()]);
                 })
@@ -84,13 +91,13 @@ const PostForm = () => {
         getPostDatas();
         getAttendance();
         console.log(posts)
-    },[])
+    },[dateState])
 
     return(
         <PostTemplate>
             {/* {currentDate} */}
             <PostHeader onLogout={onLogout}/>
-            <PostStudyRecord query={query}/>
+            <PostStudyRecord query={query} currentDate={currentDate} dateState={dateState} setDateState={setDateState}/>
             {/* {posts.map((post,id)=>
                 <PostList 
                     url={post.url} 
@@ -99,15 +106,15 @@ const PostForm = () => {
                     key={post.url}
                 />
             )} */}
-            {/* <PostCard/>
+            {/* <PostCard/> 
             <PostCard/>
             <PostCard/>
             <PostCard/> */}
 
-            <PostModal username='강지현' post={posts.filter(post => post.name==='강지현')}/>
-            <PostModal username='고지웅' post={posts.filter(post => post.name==='고지웅')}/>
+            <PostModal username='강지현' post={posts.filter(post => post.name==='강지현')} currentDate={currentDate} dateState={dateState}/>
+            <PostModal username='고지웅' post={posts.filter(post => post.name==='고지웅')} currentDate={currentDate} dateState={dateState}/>
             {/* <PostModal username='조미란' post={posts.filter(post => post.name==='조미란')}/> */}
-            <PostModal username='김의진' post={posts.filter(post => post.name==='김의진')}/>
+            <PostModal username='김의진' post={posts.filter(post => post.name==='김의진')} currentDate={currentDate} dateState={dateState}/>
             <Advise />
         </PostTemplate>
     )
