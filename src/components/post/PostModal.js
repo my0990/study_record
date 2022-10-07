@@ -5,9 +5,9 @@ import ModalBtn from "./ModalBtn";
 import ModalBlock from "./ModalBlock";
 import UploadIcon from "../common/UploadIcon";
 import ModalCard from "./ModalCard";
-import {currentDate} from "../../lib/api/date";
 
-const PostModal = ({username, post}) => {
+
+const PostModal = ({username, post, currentDate, dateState}) => {
     //input 이미지 state
     const [imageUpload, setImageUpload] = useState(null);
     //이미지 업로드 로딩
@@ -82,7 +82,7 @@ const PostModal = ({username, post}) => {
             <input type="checkbox" id="my-modal-4" className="modal-toggle" /> */}
             {post[0]?.name
                 ? <ModalCard post={post[0]}/>
-                :username === localStorage.getItem("username")
+                :username === localStorage.getItem("username") && dateState == currentDate.getDate()
                 ? <ModalBtn username={username} checked={checked} setChecked={setChecked}/>
                 : <ModalBlock username={username}/>
             }
